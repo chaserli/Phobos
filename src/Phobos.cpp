@@ -29,7 +29,7 @@ const char* Phobos::AppIconPath = nullptr;
 bool Phobos::Debug_DisplayDamageNumbers = false;
 
 #ifdef STR_GIT_COMMIT
-const wchar_t* Phobos::VersionDescription = L"Phobos nightly build (" STR_GIT_COMMIT L" @ " STR_GIT_BRANCH L"). DO NOT SHIP IN MODS!";
+const wchar_t* Phobos::VersionDescription = L"Dimitry Volkov test bld (" STR_GIT_COMMIT L" @ " STR_GIT_BRANCH L"). DO NOT SHIP IN MODS!";
 #elif !defined(IS_RELEASE_VER)
 const wchar_t* Phobos::VersionDescription = L"Phobos development build #" _STR(BUILD_NUMBER) L". Please test the build before shipping.";
 #else
@@ -308,7 +308,7 @@ DEFINE_HOOK(0x4F4583, GScreenClass_DrawText, 0x6)
 
 		Point2D location { rect.X + 5,5 };
 
-		DSurface::Composite->FillRect(&rect, COLOR_BLACK);
+		//DSurface::Composite->FillRect(&rect, COLOR_BLACK);
 		DSurface::Composite->DrawText(Phobos::VersionDescription, &location, COLOR_RED);
 	}
 	return 0;

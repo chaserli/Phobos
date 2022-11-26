@@ -124,7 +124,7 @@ DEFINE_HOOK(0x4896EC, Explosion_Damage_DamageSelf, 0x6)
 
 	return 0;
 }
-#ifdef VOLKOV_FIXED_THIS
+
 #pragma region Fix_WW_Strength_ReceiveDamage_C4Warhead_Misuses
 
 // Suicide=yes behavior on WeaponTypes
@@ -134,7 +134,7 @@ DEFINE_HOOK(0x6FDDCA, TechnoClass_Fire_Suicide, 0xA)
 
 	int dmg = pThis->Health + pThis->GetTechnoType()->Strength;
 	R->EAX(pThis->ReceiveDamage(&dmg, 0, RulesClass::Instance->C4Warhead,
-		nullptr, true, false, pThis->Owner));
+		nullptr, true, false, nullptr));
 
 	return 0x6FDE03;
 }
@@ -144,10 +144,9 @@ DEFINE_HOOK(0x70BC6F, TechnoClass_UpdateRigidBodyKinematics_KillFlipped, 0xA)
 {
 	GET(TechnoClass* const, pThis, ESI);
 
-	auto const pFlipper = pThis->DirectRockerLinkedUnit;
 	int dmg = pThis->Health + pThis->GetTechnoType()->Strength;
 	R->EAX(pThis->ReceiveDamage(&dmg, 0, RulesClass::Instance->C4Warhead,
-		pFlipper, true, false, pFlipper ? pFlipper->Owner : nullptr));
+		pThis->DirectRockerLinkedUnit, true, false, nullptr));
 
 	return 0x70BCA4;
 }
@@ -159,4 +158,3 @@ DEFINE_HOOK(0x70BC6F, TechnoClass_UpdateRigidBodyKinematics_KillFlipped, 0xA)
 // 0x718B1E
 
 #pragma endregion Fix_WW_Strength_ReceiveDamage_C4Warhead_Misuse
-#endif

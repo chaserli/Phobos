@@ -149,6 +149,10 @@ void ScenarioExt::ExtData::LoadFromINIFile(CCINIClass* const pINI)
 		this->BriefingTheme = ini_missionmd.ReadTheme(scenarioName, "BriefingTheme", pINI->ReadTheme(GameStrings::Basic, "BriefingTheme", this->BriefingTheme));
 
 	}
+	LightingSLFixBuffer.INIAmbientCurrent = ScenarioClass::Instance->AmbientCurrent;
+	LightingSLFixBuffer.INIAmbientOriginal = ScenarioClass::Instance->AmbientOriginal;
+	LightingSLFixBuffer.INIAmbientTarget = ScenarioClass::Instance->AmbientTarget;
+	LightingSLFixBuffer.ININormalLighting = ScenarioClass::Instance->NormalLighting;
 }
 
 template <typename T>
@@ -162,6 +166,7 @@ void ScenarioExt::ExtData::Serialize(T& Stm)
 		.Process(this->BriefingTheme)
 		.Process(this->AutoDeathObjects)
 		.Process(this->TransportReloaders)
+		.Process(this->LightingSLFixBuffer)
 		;
 }
 

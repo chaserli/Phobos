@@ -153,6 +153,7 @@ void ScenarioExt::ExtData::LoadFromINIFile(CCINIClass* const pINI)
 	LightingSLFixBuffer.INIAmbientOriginal = ScenarioClass::Instance->AmbientOriginal;
 	LightingSLFixBuffer.INIAmbientTarget = ScenarioClass::Instance->AmbientTarget;
 	LightingSLFixBuffer.ININormalLighting = ScenarioClass::Instance->NormalLighting;
+	LightingSLFixBuffer.EverCalled = false;
 }
 
 template <typename T>

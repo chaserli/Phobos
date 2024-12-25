@@ -45,8 +45,8 @@ public:
 			{
 				int R,G,B;
 				bool tint;
-			}ArgsLastTime;
-
+			}ArgsLastTime {-1,-1,-1,false};
+			bool EverCalled;
 		} LightingSLFixBuffer;
 		ExtData(ScenarioClass* OwnerObject) : Extension<ScenarioClass>(OwnerObject)
 			, ShowBriefing { false }

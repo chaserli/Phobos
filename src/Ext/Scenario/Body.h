@@ -35,7 +35,19 @@ public:
 
 		std::vector<TechnoExt::ExtData*> AutoDeathObjects;
 		std::vector<TechnoExt::ExtData*> TransportReloaders; // Objects that can reload ammo in limbo
-
+		struct
+		{
+			int INIAmbientOriginal;
+			int INIAmbientCurrent;
+			int INIAmbientTarget;
+			LightingStruct ININormalLighting;
+			struct
+			{
+				int R,G,B;
+				bool tint;
+			}ArgsLastTime {-1,-1,-1,false};
+			bool EverCalled;
+		} LightingSLFixBuffer;
 		ExtData(ScenarioClass* OwnerObject) : Extension<ScenarioClass>(OwnerObject)
 			, ShowBriefing { false }
 			, BriefingTheme { -1 }
